@@ -1,0 +1,101 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Bidding #<%= @bidding.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/biddings" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_bidding/<%= @bidding.id %>" class="btn btn-block btn-outline-secondary">
+          Delete bidding
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Bidder
+      </dt>
+      <dd>
+        <%= @bidding.bidder_id %>
+      </dd>
+
+      <dt>
+        Book
+      </dt>
+      <dd>
+        <%= @bidding.book_id %>
+      </dd>
+
+      <dt>
+        Bidding amount
+      </dt>
+      <dd>
+        <%= @bidding.bidding_amount %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@bidding.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@bidding.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit bidding
+    </h2>
+
+    <form action="/modify_bidding/<%= @bidding.id %>"  method="post" >
+      <div class="form-group">
+        <label for="bidder_id_box">
+          Bidder
+        </label>
+
+        <input type="text" id="bidder_id_box" name="bidder_id_from_query" class="form-control" value="<%= @bidding.bidder_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="book_id_box">
+          Book
+        </label>
+
+        <input type="text" id="book_id_box" name="book_id_from_query" class="form-control" value="<%= @bidding.book_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="bidding_amount_box">
+          Bidding amount
+        </label>
+
+        <input type="text" id="bidding_amount_box" name="bidding_amount_from_query" class="form-control" value="<%= @bidding.bidding_amount %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update bidding
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
