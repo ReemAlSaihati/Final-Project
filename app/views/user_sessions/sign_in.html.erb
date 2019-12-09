@@ -1,3 +1,23 @@
+<% if @current_user != nil %>
+
+<n>
+<h2> 
+You are currently signed it! 
+</h2>
+</n>
+
+
+You can explore and interact with the website by looking:
+<li>
+at available books, 
+adding a book you might want to sell, 
+bidding on a book, or 
+requesting a book
+</li>
+
+
+<% else %>
+
 <h1>Sign in</h1>
 
 <form action="/user_verify_credentials" method="post">
@@ -21,3 +41,5 @@
 <p>
   Or, <a href="/user_sign_up">Sign up</a> instead.
 </p>
+
+<% end %>

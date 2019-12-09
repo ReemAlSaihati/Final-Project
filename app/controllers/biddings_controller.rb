@@ -14,7 +14,7 @@ class BiddingsController < ApplicationController
 
   def create
     @bidding = Bidding.new
-    @bidding.bidder_id = params.fetch("bidder_id_from_query")
+    @bidding.bidder_id = @current_user.id
     @bidding.book_id = params.fetch("book_id_from_query")
     @bidding.bidding_amount = params.fetch("bidding_amount_from_query")
 

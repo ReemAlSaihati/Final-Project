@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if save_status == true
       session.store(:user_id,  @user.id)
    
-      redirect_to("/", { :notice => "User account created successfully."})
+      redirect_to("/books", { :notice => "User account created successfully."})
     else
       redirect_to("/user_sign_up", { :alert => "User account failed to create successfully."})
     end
@@ -51,7 +51,13 @@ class UsersController < ApplicationController
     @current_user.destroy
     reset_session
     
-    redirect_to("/", { :notice => "User account cancelled" })
+    redirect_to("/user_sign_in", { :notice => "User account cancelled" })
+  end
+
+    def my_books
+
+    render({ :template => "books/my_books.html.erb" })
+
   end
   
 end

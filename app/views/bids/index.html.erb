@@ -1,7 +1,7 @@
 <div class="row mb-3">
   <div class="col-md-12">
     <h1>
-      List of my biddings
+      List of all bids
     </h1>
   </div>
 </div>
@@ -11,56 +11,53 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h2>
-      Add a new bidding
+      Add a new bid
     </h2>
 
-    <form action="/insert_bidding" method="post">
+    <form action="/insert_bid" method="post">
 
-      
-      <div class="form-group">
-          Book Title
+    <div class="form-group">
+        <label for="book_title_box">
+          Book title
+        </label>
 
-      <select>
-        <% Book.all.each do |book| %>
-        <option value="volvo"><%=book.title%></option>
-        <% end %>
-      </select>
-
+        <input type="text" id="book_title_box" name="book_title_from_query" class="form-control">
       </div>
+
       <div class="form-group">
-          Book Owner
+      <label for="title_box">
+          Book Owner Username
+      </label>
+
       <select>
         <% User.all.each do |name| %>
-        <option><%=name.username %></option>
+        <option value="volvo" id="title_box" class="form-control"> <%=name.username %></option>
         <% end %>
-      </select>
+      </select name="book_title_from_query" >
       </div>
-
 
       <div class="form-group">
         <label for="bidding_amount_box">
           Bidding amount
         </label>
-
         <input type="text" id="bidding_amount_box" name="bidding_amount_from_query" class="form-control">
       </div>
 
       <button class="btn btn-block btn-outline-secondary">
-        Create bidding
+        Create bid
       </button>
     </form>
   </div>
 </div>
 
-<hr>
+
 <div class="row mb-3">
   <div class="col-md-12">
     <table class="table">
       <tr>
 
-
         <th>
-          Book
+          Book title
         </th>
 
         <th>
@@ -68,11 +65,11 @@
         </th>
 
         <th>
-          Bidding amount
+          Book owner name
         </th>
 
         <th>
-          Book owner
+          Bidding amount
         </th>
 
         <th>
@@ -87,38 +84,39 @@
         </th>
       </tr>
 
-      <% my_biddings = Bidding.where({ :bidder_id => @current_user.id})%>
+      <% my_biddings = Bid.where({ :bidder_id => @current_user.id})%>
 
-      <% my_biddings.each do |bidding| %>
+      <% my_biddings.each do |bid| %>
       <tr>
 
-
         <td>
-          <%= Book.where({ :id => bidding.book_id}).at(0).title  %>
+          <%= bid.book_title %>
         </td>
 
         <td>
-          <img src="<%= Book.where({ :id => bidding.book_id}).at(0).image %>" height="230" width="170">
+          <img src="<%= Book.where({ :title => bid.book_title}).at(0).image %>" height="230" width="170">
+        </td>
+
+
+        <td>
+          <%= bid.book_owner_name %>
+        </td>
+
+
+        <td>
+          <%= bid.bidding_amount %>
+        </td>
+
+
+        <td>
+          <%= time_ago_in_words(bid.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(bid.updated_at) %> ago
         </td>
 
         <td>
-          <%= bidding.bidding_amount %>
-        </td>
-
-        <td>
-          TBD
-        </td>
-
-        <td>
-          <%= time_ago_in_words(bidding.created_at) %> ago
-        </td>
-
-        <td>
-          <%= time_ago_in_words(bidding.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/biddings/<%= bidding.id %>">
+          <a href="/bids/<%= bid.id %>">
             Show details
           </a>
         </td>

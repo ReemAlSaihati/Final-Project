@@ -1,0 +1,131 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Bid #<%= @bid.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/bids" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_bid/<%= @bid.id %>" class="btn btn-block btn-outline-secondary">
+          Delete bid
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Bidder
+      </dt>
+      <dd>
+        <%= @bid.bidder_id %>
+      </dd>
+
+      <dt>
+        Book
+      </dt>
+      <dd>
+        <%= @bid.book_id %>
+      </dd>
+
+      <dt>
+        Bidding amount
+      </dt>
+      <dd>
+        <%= @bid.bidding_amount %>
+      </dd>
+
+      <dt>
+        Book owner name
+      </dt>
+      <dd>
+        <%= @bid.book_owner_name %>
+      </dd>
+
+      <dt>
+        Book title
+      </dt>
+      <dd>
+        <%= @bid.book_title %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@bid.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@bid.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit bid
+    </h2>
+
+    <form action="/modify_bid/<%= @bid.id %>"  method="post" >
+      <div class="form-group">
+        <label for="bidder_id_box">
+          Bidder
+        </label>
+
+        <input type="text" id="bidder_id_box" name="bidder_id_from_query" class="form-control" value="<%= @bid.bidder_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="book_id_box">
+          Book
+        </label>
+
+        <input type="text" id="book_id_box" name="book_id_from_query" class="form-control" value="<%= @bid.book_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="bidding_amount_box">
+          Bidding amount
+        </label>
+
+        <input type="text" id="bidding_amount_box" name="bidding_amount_from_query" class="form-control" value="<%= @bid.bidding_amount %>">
+      </div>
+
+      <div class="form-group">
+        <label for="book_owner_name_box">
+          Book owner name
+        </label>
+
+        <input type="text" id="book_owner_name_box" name="book_owner_name_from_query" class="form-control" value="<%= @bid.book_owner_name %>">
+      </div>
+
+      <div class="form-group">
+        <label for="book_title_box">
+          Book title
+        </label>
+
+        <input type="text" id="book_title_box" name="book_title_from_query" class="form-control" value="<%= @bid.book_title %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update bid
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

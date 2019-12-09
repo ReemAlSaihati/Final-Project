@@ -8,22 +8,54 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
+   
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Books
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a href="/books" class="dropdown-item">
+              Sell or Request a Book
+            </a>
+
+            <a href="/available_books" class="dropdown-item">
+              Books for Sale
+            </a>
+
+            <a href="/requested_books" class="dropdown-item">
+              Requested books
+            </a>
+
+          </div>
+        </li>
+
+    <% if @current_user != nil %>
     <div class="collapse navbar-collapse" id="collapsible-nav-links">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Resources
+            My Profile (<%=@current_user.username %>)
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a href="/biddings" class="dropdown-item">
-              Biddings
+            <a href="/my_books" class="dropdown-item">
+              My Books
             </a>
-            <a href="/books" class="dropdown-item">
-              Books
+
+            <a href="/bids" class="dropdown-item">
+              My Biddings
             </a>
+
+            <a href="/user_sign_out" class="dropdown-item">
+              Sign Out
+            </a>
+
+
+            <% end %>
+
           </div>
-        </li>
-      </ul>
+          </ul>
     </div> <!-- .navbar-collapse -->
   </div> <!-- .container -->
+
 </nav>

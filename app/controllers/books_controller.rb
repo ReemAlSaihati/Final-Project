@@ -1,4 +1,17 @@
 class BooksController < ApplicationController
+
+  def requested_books
+
+      render({ :template => "books/requested_books.html.erb"})
+  
+  end
+
+  def available_books
+
+    render({ :template => "books/available_books.html.erb"})
+
+  end
+
   def index
     @books = Book.all.order({ :created_at => :desc })
 
@@ -14,7 +27,7 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new
-    @book.owner_id = params.fetch("owner_id_from_query")
+    @book.owner_id = @current_user.id 
     @book.title = params.fetch("title_from_query")
     @book.price = params.fetch("price_from_query")
     @book.image = params.fetch("image_from_query")
@@ -33,7 +46,7 @@ class BooksController < ApplicationController
     the_id = params.fetch("id_from_path")
     @book = Book.where({ :id => the_id }).at(0)
 
-    @book.owner_id = params.fetch("owner_id_from_query")
+    @book.owner_id = @current_user.id 
     @book.title = params.fetch("title_from_query")
     @book.price = params.fetch("price_from_query")
     @book.image = params.fetch("image_from_query")
@@ -56,4 +69,6 @@ class BooksController < ApplicationController
 
     redirect_to("/books", { :notice => "Book deleted successfully."} )
   end
+
+
 end

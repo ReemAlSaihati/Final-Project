@@ -1,6 +1,34 @@
 Rails.application.routes.draw do
 
+  # Routes for the Bid resource:
 
+  # CREATE
+  match("/insert_bid", { :controller => "bids", :action => "create", :via => "post"})
+          
+  # READ
+  match("/bids", { :controller => "bids", :action => "index", :via => "get"})
+  
+  match("/bids/:id_from_path", { :controller => "bids", :action => "show", :via => "get"})
+  
+  # UPDATE
+  
+  match("/modify_bid/:id_from_path", { :controller => "bids", :action => "update", :via => "post"})
+  
+  # DELETE
+  match("/delete_bid/:id_from_path", { :controller => "bids", :action => "destroy", :via => "get"})
+
+  #------------------------------
+
+  # My own routes 
+
+  match("/my_books", { :controller => "users", :action => "my_books", :via => "get"})
+
+  match("/requested_books", { :controller => "books", :action => "requested_books", :via => "get"})
+
+  match("/available_books", {:controller => "books", :action => "available_books", :via => "get"})
+
+
+  #--------------------------------------
 
   # Routes for the Bidding resource:
 
@@ -46,6 +74,7 @@ Rails.application.routes.draw do
   
   # Routes for signing in
   match("/", { :controller => "user_sessions", :action => "new_session_form", :via => "get"})
+  match("/user_sign_in", { :controller => "user_sessions", :action => "new_session_form", :via => "get"})
   
   match("/user_verify_credentials", { :controller => "user_sessions", :action => "add_cookie", :via => "post"})
   

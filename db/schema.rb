@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_184118) do
+ActiveRecord::Schema.define(version: 2019_12_08_234124) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -42,6 +42,16 @@ ActiveRecord::Schema.define(version: 2019_12_05_184118) do
     t.integer "bidder_id"
     t.integer "book_id"
     t.integer "bidding_amount"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "bids", force: :cascade do |t|
+    t.integer "bidder_id"
+    t.integer "book_id"
+    t.integer "bidding_amount"
+    t.string "book_owner_name"
+    t.string "book_title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

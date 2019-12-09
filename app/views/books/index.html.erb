@@ -1,7 +1,7 @@
 <div class="row mb-3">
   <div class="col-md-12">
     <h1>
-      List of all books
+      List of all available books
     </h1>
   </div>
 </div>
@@ -11,17 +11,10 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h2>
-      Add a new book
+      Sell a book or Request one 
     </h2>
 
     <form action="/insert_book" method="post">
-      <div class="form-group">
-        <label for="owner_id_box">
-          Owner
-        </label>
-
-        <input type="text" id="owner_id_box" name="owner_id_from_query" class="form-control">
-      </div>
 
       <div class="form-group">
         <label for="title_box">
@@ -47,11 +40,6 @@
         <input type="text" id="image_box" name="image_from_query" class="form-control">
       </div>
 
-      <div class="custom-control custom-checkbox mb-3">
-        <input type="checkbox" class="custom-control-input" id="availability_box" name="availability_from_query" value="1">
-
-        <label class="custom-control-label" for="availability_box">Availability</label>
-      </div>
 
       <div class="form-group">
         <label for="author_box">
@@ -59,6 +47,11 @@
         </label>
 
         <input type="text" id="author_box" name="author_from_query" class="form-control">
+      </div>
+
+      <div>
+        <label>Selling?</label>
+        <input type="checkbox">
       </div>
 
       <button class="btn btn-block btn-outline-secondary">
@@ -73,9 +66,6 @@
   <div class="col-md-12">
     <table class="table">
       <tr>
-        <th>
-          ID
-        </th>
 
         <th>
           Owner
@@ -115,12 +105,9 @@
 
       <% @books.each do |book| %>
       <tr>
-        <td>
-          <%= book.id %>
-        </td>
 
         <td>
-          <%= book.owner_id %>
+          <%= User.where({ :id => book.owner_id}).at(0).username %>
         </td>
 
         <td>
@@ -132,11 +119,15 @@
         </td>
 
         <td>
-          <%= book.image %>
+          <img src="<%= book.image %>" height="200" width="150">
         </td>
 
         <td>
-          <%= book.availability %>
+          <% if book.availability == true %>
+            Selling
+          <% else %> 
+            Looking for 
+          <% end %>    
         </td>
 
         <td>

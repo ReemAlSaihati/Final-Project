@@ -2,6 +2,8 @@ namespace(:dev) do
   desc "Hydrate the database with some dummy data to look at so that developing is easier"
   task({ :prime => :environment}) do
     User.destroy_all
+    Book.destroy_all
+    Bidding.destroy_all
 
     u =User.new
     u.email = "reem@hotmail.com"
@@ -40,30 +42,34 @@ namespace(:dev) do
     u.save 
 
     b = Book.new 
-    b.owner_id = 1
+    b.owner_id = 20
     b.title = "The Hobbit"
     b.price = 6
     b.image = "https://images-na.ssl-images-amazon.com/images/I/91b0C2YNSrL.jpg"
     b.availability = true 
     b.author = "J.R.R. Tolkien"
+    b.save
 
     b = Book.new 
-    b.owner_id = 1 
+    b.owner_id = 21
     b.title = "The Fault in Our Stars"
     b.price = 7
     b.image = "https://images-na.ssl-images-amazon.com/images/I/81a4kCNuH%2BL.jpg"
     b.availability = true 
     b.author = "John Green"
+    b.save
 
     d = Bidding.new 
-    d.bidder_id = 2 
-    d.book_id = 0
+    d.bidder_id = 21 
+    d.book_id = 9
     d.bidding_amount = 6.5
+    d.save
 
     d = Bidding.new 
-    d.bidder_id = 1 
-    d.book_id = 0 
+    d.bidder_id = 20 
+    d.book_id = 8
     d.bidding_amount = 8
+    d.save
 
 
   end

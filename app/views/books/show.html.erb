@@ -1,7 +1,7 @@
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
     <h1>
-      Book #<%= @book.id %> details
+      <%= @book.title %> details
     </h1>
 
     <div class="row mb-3">
@@ -11,11 +11,13 @@
         </a>
       </div>
 
+    <% if @book.owner_id == @current_user.id %>
       <div class="col">
         <a href="/delete_book/<%= @book.id %>" class="btn btn-block btn-outline-secondary">
           Delete book
         </a>
       </div>
+    <% end %>
     </div>
 
     <dl>
@@ -23,7 +25,7 @@
         Owner
       </dt>
       <dd>
-        <%= @book.owner_id %>
+        <%= User.where({ :id => @book.owner_id}).at(0).username %>
       </dd>
 
       <dt>
@@ -44,14 +46,19 @@
         Image
       </dt>
       <dd>
-        <%= @book.image %>
+        <img src="<%= @book.image %>" height="230" width="170">
+        
       </dd>
 
       <dt>
-        Availability
+        Selling? 
       </dt>
       <dd>
-        <%= @book.availability %>
+          <% if @book.availability== true %>
+            Selling
+          <% else %> 
+           No, Looking for  
+          <% end %>   
       </dd>
 
       <dt>
@@ -80,6 +87,7 @@
 
 <hr>
 
+  <% if @book.owner_id == @current_user.id %>
 
 <div class="row mb-3">
   <div class="col-md-8 offset-md-2">
@@ -88,13 +96,6 @@
     </h2>
 
     <form action="/modify_book/<%= @book.id %>"  method="post" >
-      <div class="form-group">
-        <label for="owner_id_box">
-          Owner
-        </label>
-
-        <input type="text" id="owner_id_box" name="owner_id_from_query" class="form-control" value="<%= @book.owner_id %>">
-      </div>
 
       <div class="form-group">
         <label for="title_box">
@@ -143,3 +144,15 @@
 </div>
 
 <hr>
+
+<% else %>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a class="btn btn-block btn-outline-secondary">
+          Bid on the Book 
+        </a>
+    </div>
+
+
+<% end %>
