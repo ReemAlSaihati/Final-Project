@@ -1,7 +1,7 @@
 <div class="row mb-3">
   <div class="col-md-12">
     <h1>
-      List of all bids
+      List of all your bids
     </h1>
   </div>
 </div>
@@ -15,25 +15,28 @@
     </h2>
 
     <form action="/insert_bid" method="post">
+     
+      <div class="form-group">
+          Book Title
 
-    <div class="form-group">
-        <label for="book_title_box">
-          Book title
-        </label>
-
-        <input type="text" id="book_title_box" name="book_title_from_query" class="form-control">
+      <select name="book_title_from_query">
+        <% Book.all.each do |book| %>
+        <option value="<%=book.title%>"><%=book.title%></option>
+        <% end %>
+      </select>
       </div>
 
-      <div class="form-group">
-      <label for="title_box">
-          Book Owner Username
-      </label>
+      <%# book_choice = Book.where({ :title => params.fetch("book_title_from_query")}).at(0) %>
+      
+      <%# book_choice_owners = User.where({ :id => book_choice.owner_id}) %>
 
-      <select>
+      <div class="form-group">
+          Book Owner
+      <select name="book_owner_name_from_query">
         <% User.all.each do |name| %>
-        <option value="volvo" id="title_box" class="form-control"> <%=name.username %></option>
+        <option value="<%=name.username %>"><%=name.username %></option>
         <% end %>
-      </select name="book_title_from_query" >
+      </select>
       </div>
 
       <div class="form-group">
