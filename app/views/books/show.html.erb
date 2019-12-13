@@ -151,12 +151,37 @@
 
 <% else %>
 
-    <div class="row mb-3">
-      <div class="col">
-        <a class="btn btn-block btn-outline-secondary" href="/bids"">
-          Bid on the Book 
-        </a>
-    </div>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Add a new bid for <%= @book.title %>
+    </h2>
+
+    <form action="/insert_bid" method="post">
+
+       <div class="form-group">
+          <label for="owner_box">
+          <input type="hidden" value="<%= User.where({ :id => @book.owner_id}).at(0).username %>" id="owner_box" name="book_owner_name_from_query" class="form-control">
+     
+      <div class="form-group">
+          <label for="title_box">
+          <input type="hidden" value="<%= @book.title %>" id="title_box" name="book_title_from_query" class="form-control">
+
+      <div class="form-group">
+        <label for="bidding_amount_box">
+          Bidding amount
+        </label>
+        <input type="text" id="bidding_amount_box" name="bidding_amount_from_query" class="form-control">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update bid
+      </button>
+    </form>
+  </div>
+</div>
 
 
 <% end %>

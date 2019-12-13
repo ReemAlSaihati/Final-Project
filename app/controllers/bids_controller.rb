@@ -20,11 +20,11 @@ class BidsController < ApplicationController
     @bid.book_owner_name = params.fetch("book_owner_name_from_query")
     @bid.book_title = params.fetch("book_title_from_query")
 
-    if @bid.valid?
+    if @bid.valid? && Book.where({:title => @bid.book_title}).at(0).price.to_f <= @bid.bidding_amount.to_f
       @bid.save
       redirect_to("/bids", { :notice => "Bid created successfully." })
     else
-      redirect_to("/bids", { :notice => "Bid failed to create successfully." })
+      redirect_to("/bids", { :notice => "Bid failed to create successfully. Make sure bidding amount is as great as current price." })
     end
   end
 
