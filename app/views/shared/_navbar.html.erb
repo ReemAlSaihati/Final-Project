@@ -35,7 +35,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            My Profile (<%=@current_user.username %>)
+            My Boooking & My Biddings
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a href="/my_books" class="dropdown-item">
@@ -46,15 +46,62 @@
               My Biddings
             </a>
 
+
+            <% end %>
+
+          </div>
+
+    <li>
+    <% if @current_user != nil %>
+    <div class="collapse navbar-collapse" id="collapsible-nav-links">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            My Messages (Put a # of the messages)
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a href="/edit_user" class="dropdown-item">
+              Send or Read a Meaage 
+            </a>
+
+
             <a href="/user_sign_out" class="dropdown-item">
               Sign Out
             </a>
+
 
 
             <% end %>
 
           </div>
           </ul>
+          </li>
+
+          <li>
+    <% if @current_user != nil %>
+    <div class="collapse navbar-collapse" id="collapsible-nav-links">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            My Profile (<%=@current_user.username %>)
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a href="/edit_user" class="dropdown-item">
+              Edit Profile 
+            </a>
+
+
+            <a href="/user_sign_out" class="dropdown-item">
+              Sign Out
+            </a>
+
+
+
+            <% end %>
+
+        </div>
+      </ul>
+  </li>
     </div> <!-- .navbar-collapse -->
   </div> <!-- .container -->
 
