@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_08_234124) do
+ActiveRecord::Schema.define(version: 2019_12_13_011205) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -63,6 +63,20 @@ ActiveRecord::Schema.define(version: 2019_12_08_234124) do
     t.string "image"
     t.boolean "availability", default: true
     t.string "author"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.integer "sender_id"
+    t.string "sender_username"
+    t.integer "receiver_id"
+    t.string "receiver_username"
+    t.string "sender_venmo"
+    t.string "receiver_venmo"
+    t.string "message_sent"
+    t.time "sent_since"
+    t.date "sent_since_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

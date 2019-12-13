@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
 
+  #Route for the Message resource: 
+  match("/insert_message", { :controller=>"messages", :action => "create", :via => "post"})
+
+  match("/messages", { :controller=>"messages", :action => "index", :via => "get"})
+
+  match("/messages/:id_from_path", { :controller=>"messages", :action => "show", :via => "get"})
+
+  match("/modify_message/:id_from_path", { :controller=>"messages", :action => "update", :via => "post"})
+
+  match("/delete_message/:id_from_path", { :controller=>"messages", :action => "destroy", :via => "get"})
+
   # Routes for the Bid resource:
 
   # CREATE

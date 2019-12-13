@@ -1,0 +1,191 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Message #<%= @message.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/messages" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_message/<%= @message.id %>" class="btn btn-block btn-outline-secondary">
+          Delete message
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Sender
+      </dt>
+      <dd>
+        <%= @message.sender_id %>
+      </dd>
+
+      <dt>
+        Sender username
+      </dt>
+      <dd>
+        <%= @message.sender_username %>
+      </dd>
+
+      <dt>
+        Receiver
+      </dt>
+      <dd>
+        <%= @message.receiver_id %>
+      </dd>
+
+      <dt>
+        Receiver username
+      </dt>
+      <dd>
+        <%= @message.receiver_username %>
+      </dd>
+
+      <dt>
+        Sender venmo
+      </dt>
+      <dd>
+        <%= @message.sender_venmo %>
+      </dd>
+
+      <dt>
+        Receiver venmo
+      </dt>
+      <dd>
+        <%= @message.receiver_venmo %>
+      </dd>
+
+      <dt>
+        Message sent
+      </dt>
+      <dd>
+        <%= @message.message_sent %>
+      </dd>
+
+      <dt>
+        Sent since
+      </dt>
+      <dd>
+        <%= @message.sent_since %>
+      </dd>
+
+      <dt>
+        Sent since date
+      </dt>
+      <dd>
+        <%= @message.sent_since_date %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@message.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@message.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h2>
+      Edit message
+    </h2>
+
+    <form action="/modify_message/<%= @message.id %>"  method="post" >
+      <div class="form-group">
+        <label for="sender_id_box">
+          Sender
+        </label>
+
+        <input type="text" id="sender_id_box" name="sender_id_from_query" class="form-control" value="<%= @message.sender_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="sender_username_box">
+          Sender username
+        </label>
+
+        <input type="text" id="sender_username_box" name="sender_username_from_query" class="form-control" value="<%= @message.sender_username %>">
+      </div>
+
+      <div class="form-group">
+        <label for="receiver_id_box">
+          Receiver
+        </label>
+
+        <input type="text" id="receiver_id_box" name="receiver_id_from_query" class="form-control" value="<%= @message.receiver_id %>">
+      </div>
+
+      <div class="form-group">
+        <label for="receiver_username_box">
+          Receiver username
+        </label>
+
+        <input type="text" id="receiver_username_box" name="receiver_username_from_query" class="form-control" value="<%= @message.receiver_username %>">
+      </div>
+
+      <div class="form-group">
+        <label for="sender_venmo_box">
+          Sender venmo
+        </label>
+
+        <input type="text" id="sender_venmo_box" name="sender_venmo_from_query" class="form-control" value="<%= @message.sender_venmo %>">
+      </div>
+
+      <div class="form-group">
+        <label for="receiver_venmo_box">
+          Receiver venmo
+        </label>
+
+        <input type="text" id="receiver_venmo_box" name="receiver_venmo_from_query" class="form-control" value="<%= @message.receiver_venmo %>">
+      </div>
+
+      <div class="form-group">
+        <label for="message_sent_box">
+          Message sent
+        </label>
+
+        <input type="text" id="message_sent_box" name="message_sent_from_query" class="form-control" value="<%= @message.message_sent %>">
+      </div>
+
+      <div class="form-group">
+        <label for="sent_since_box">
+          Sent since
+        </label>
+
+        <input type="time" id="sent_since_box" name="sent_since_from_query" class="form-control" value="<%= @message.sent_since %>">
+      </div>
+
+      <div class="form-group">
+        <label for="sent_since_date_box">
+          Sent since date
+        </label>
+
+        <input type="date" id="sent_since_date_box" name="sent_since_date_from_query" class="form-control" value="<%= @message.sent_since_date %>">
+      </div>
+
+      <button class="btn btn-block btn-outline-secondary">
+        Update message
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
